@@ -1,0 +1,6 @@
+/server/bin/*
+/server/tmp/*
+/server/vendor/*
+/docker/db/*
+!.gitkeep
+.idea

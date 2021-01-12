@@ -18,3 +18,8 @@ DBコンテナへの接続
 ```
 $ docker-compose exec db bash
 ```
+PHP Stanの実行
+```
+$ vendor/bin/phpstan analyse
+```
+

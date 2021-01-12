@@ -86,4 +86,11 @@ $routes->scope('/api', ['prefix' => 'Api'], function (RouteBuilder $builder) {
     $builder->connect('/task/create', ['controller' => 'Task', 'action' => 'create'])->setMethods(['POST']);
     $builder->connect('/task/update/:id', ['controller' => 'Task', 'action' => 'update'])->setPass(['id'])->setMethods(['PUT']);
     $builder->connect('/task/delete/:id', ['controller' => 'Task', 'action' => 'delete'])->setPass(['id'])->setMethods(['DELETE']);
+
+    // Recipe
+    $builder->connect('/recipe/index', ['controller' => 'Recipe', 'action' => 'index'])->setMethods(['GET']);
+    $builder->connect('/recipe/view/:id', ['controller' => 'Recipe', 'action' => 'view'])->setPass(['id'])->setMethods(['GET']);
+    $builder->connect('/recipe/add', ['controller' => 'Recipe', 'action' => 'add'])->setMethods(['POST']);
+    $builder->connect('/recipe/edit/:id', ['controller' => 'Recipe', 'action' => 'edit'])->setPass(['id'])->setMethods(['PUT']);
+    $builder->connect('/recipe/delete/:id', ['controller' => 'Recipe', 'action' => 'delete'])->setPass(['id'])->setMethods(['DELETE']);
 });

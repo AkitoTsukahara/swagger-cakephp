@@ -23,6 +23,7 @@
 
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Http\Middleware\BodyParserMiddleware;
 
 /*
  * The default class to use for all routes
@@ -73,18 +74,16 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->fallbacks();
 });
 
-/*
- * If you need a different set of middleware or none at all,
- * open new scope and define routes there.
- *
- * ```
- * $routes->scope('/api', function (RouteBuilder $builder) {
- *     // No $builder->applyMiddleware() here.
- *     
- *     // Parse specified extensions from URLs
- *     // $builder->setExtensions(['json', 'xml']);
- *     
- *     // Connect API actions here.
- * });
- * ```
- */
+$routes->scope('/api', ['prefix' => 'Api'], function (RouteBuilder $builder) {
+    $builder->registerMiddleware('bodies', new BodyParserMiddleware());
+    $builder->applyMiddleware('bodies');
+
+    $builder->setExtensions(['json']);
+
+    // Task
+    $builder->connect('/task/search', ['controller' => 'Task', 'action' => 'search'])->setMethods(['GET']);
+    $builder->connect('/task/view/:id', ['controller' => 'Task', 'action' => 'view'])->setPass(['id'])->setMethods(['GET']);
+    $builder->connect('/task/create', ['controller' => 'Task', 'action' => 'create'])->setMethods(['POST']);
+    $builder->connect('/task/update/:id', ['controller' => 'Task', 'action' => 'update'])->setPass(['id'])->setMethods(['PUT']);
+    $builder->connect('/task/delete/:id', ['controller' => 'Task', 'action' => 'delete'])->setPass(['id'])->setMethods(['DELETE']);
+});

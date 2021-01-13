@@ -58,7 +58,7 @@ services:
 
   # Swagger API
   swagger-editor:
-    image: swaggerapi/swagger-editor
+    image: swaggerapi/swagger-editor:v3.14.8
     container_name: swagger-editor
     ports:
       - 8001:8080

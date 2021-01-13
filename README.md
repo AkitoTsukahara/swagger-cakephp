@@ -5,7 +5,7 @@ $ docker-compose up -d
 ```
 停止
 ```
-$  docker stop $(docker ps -q) 
+$ docker stop $(docker ps -q) 
 ```
 phpコンテナへの接続
 ```

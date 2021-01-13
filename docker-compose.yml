@@ -55,3 +55,25 @@ services:
       PMA_PASSWORD: password
     links:
       - db
+
+  # Swagger API
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: swagger-editor
+    ports:
+      - 8001:8080
+    volumes:
+      - ./server:/tmp
+    environment:
+      SWAGGER_FILE: /tmp/openapi.yml
+
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui
+    ports:
+      - 8002:8080
+    volumes:
+      - ./server:/tmp
+    environment:
+      SWAGGER_JSON: /tmp/openapi.yml

@@ -29,6 +29,66 @@ class TaskController extends AppController
     /**
      * Search method
      *
+     * @OA\Get(
+     *   path="/api/task/search.json",
+     *   tags={"Task"},
+     *   summary="タスクを検索する",
+     *   @OA\Parameter(
+     *     name="description_like",
+     *     in="query",
+     *     required=false,
+     *     description="タスク内容検索条件",
+     *     @OA\Schema(type="string"),
+     *     example="作業"
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="tasks",
+     *         type="array",
+     *         description="タスク一覧",
+     *         @OA\Items(
+     *           @OA\Property(
+     *             property="id",
+     *             type="string",
+     *             description="タスクID",
+     *           ),
+     *           @OA\Property(
+     *             property="description",
+     *             type="string",
+     *             description="タスク内容",
+     *           ),
+     *         ),
+     *         example={
+     *           {
+     *             "id"="c366f5be-360b-45cc-8282-65c80e434f72",
+     *             "description"="朝の身だしなみチェック",
+     *           },
+     *           {
+     *             "id"="93d5ef90-be4d-4179-9311-e39bddc26427",
+     *             "description"="寝る前の作業",
+     *           },
+     *         },
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="Unexpected Error",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         description="エラーメッセージ",
+     *       ),
+     *     ),
+     *   ),
+     * )
+     *
      * @return void
      */
     public function search(): void
@@ -43,9 +103,58 @@ class TaskController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Task id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @OA\Get(
+     *   path="/api/task/view/{id}.json",
+     *   tags={"Task"},
+     *   summary="タスクを参照する",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *     description="タスクID",
+     *     @OA\Schema(type="string"),
+     *     example="c366f5be-360b-45cc-8282-65c80e434f72"
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="task",
+     *         type="object",
+     *         description="タスク",
+     *         @OA\Property(
+     *           property="id",
+     *           type="string",
+     *           description="ID",
+     *           example="c366f5be-360b-45cc-8282-65c80e434f72",
+     *         ),
+     *         @OA\Property(
+     *           property="description",
+     *           type="string",
+     *           description="タスク内容",
+     *           example="朝の身だしなみチェック",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="Unexpected Error",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         description="エラーメッセージ",
+     *       ),
+     *     ),
+     *   ),
+     * )
+     *
+     * @param string $id id.
+     * @return void
      */
     public function view($id = null)
     {
@@ -59,7 +168,57 @@ class TaskController extends AppController
     /**
      * Create method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @OA\Post(
+     *   path="/api/task/create.json",
+     *   tags={"Task"},
+     *   summary="タスクを登録する",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\JsonContent(
+     *       type="object",
+     *       required={"description"},
+     *       @OA\Property(
+     *         property="description",
+     *         type="string",
+     *         description="タスク内容",
+     *         example="朝の身だしなみチェック",
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="task",
+     *         type="object",
+     *         description="タスク",
+     *         @OA\Property(
+     *           property="id",
+     *           type="string",
+     *           description="ID",
+     *           example="c366f5be-360b-45cc-8282-65c80e434f72",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="Unexpected Error",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         description="エラーメッセージ",
+     *       ),
+     *     ),
+     *   ),
+     * )
+     *
+     * @return void
+     * @throws \App\Exception\ApplicationException
      */
     public function create(): void
     {
@@ -85,9 +244,66 @@ class TaskController extends AppController
     /**
      * Update method
      *
-     * @param string $id Task id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @OA\Put(
+     *   path="/api/task/update/{id}.json",
+     *   tags={"Task"},
+     *   summary="タスクを更新する",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *     description="タスクID",
+     *     @OA\Schema(type="string"),
+     *     example="c366f5be-360b-45cc-8282-65c80e434f72"
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\JsonContent(
+     *       type="object",
+     *       required={"description"},
+     *       @OA\Property(
+     *         property="description",
+     *         type="string",
+     *         description="タスク内容",
+     *         example="朝の身だしなみチェック",
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="task",
+     *         type="object",
+     *         description="タスク",
+     *         @OA\Property(
+     *           property="id",
+     *           type="string",
+     *           description="ID",
+     *           example="c366f5be-360b-45cc-8282-65c80e434f72",
+     *         ),
+     *       ),
+     *     ),
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="Unexpected Error",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         description="エラーメッセージ",
+     *       ),
+     *     ),
+     *   ),
+     * )
+     *
+     * @param string $id id
+     * @return void
+     * @throws \App\Exception\ApplicationException
      */
     public function update(string $id): void
     {
@@ -114,9 +330,39 @@ class TaskController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Task id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * @OA\Delete(
+     *   path="/api/task/delete/{id}.json",
+     *   tags={"Task"},
+     *   summary="タスクを削除する",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *     description="タスクID",
+     *     @OA\Schema(type="string"),
+     *     example="c366f5be-360b-45cc-8282-65c80e434f72"
+     *   ),
+     *   @OA\Response(
+     *     response=204,
+     *     description="No Content",
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="Unexpected Error",
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         description="エラーメッセージ",
+     *       ),
+     *     ),
+     *   ),
+     * )
+     *
+     * @param string $id id
+     * @return void
+     * @throws \App\Exception\ApplicationException
      */
     public function delete(string $id): void
     {

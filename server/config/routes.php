@@ -24,6 +24,7 @@
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 use Cake\Http\Middleware\BodyParserMiddleware;
+use App\Middleware\CorsMiddleware;
 
 /*
  * The default class to use for all routes
@@ -78,7 +79,12 @@ $routes->scope('/api', ['prefix' => 'Api'], function (RouteBuilder $builder) {
     $builder->registerMiddleware('bodies', new BodyParserMiddleware());
     $builder->applyMiddleware('bodies');
 
+    $builder->registerMiddleware('cors', new CorsMiddleware());
+    $builder->applyMiddleware('cors');
+
     $builder->setExtensions(['json']);
+
+    $builder->connect('/*', ['controller' => 'Cors', 'action' => 'options'])->setMethods(['OPTIONS']);
 
     // Task
     $builder->connect('/task/search', ['controller' => 'Task', 'action' => 'search'])->setMethods(['GET']);

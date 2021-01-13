@@ -18,7 +18,8 @@
         "josegonzalez/dotenv": "^3.2",
         "phpstan/phpstan": "^0.12.65",
         "phpunit/phpunit": "~8.5.0 || ^9.3",
-        "psy/psysh": "@stable"
+        "psy/psysh": "@stable",
+        "zircote/swagger-php": "^3.1"
     },
     "suggest": {
         "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
@@ -44,10 +45,11 @@
             "@test",
             "@cs-check"
         ],
-        "cs-check": "phpcs --colors -p  src/ tests/",
-        "cs-fix": "phpcbf --colors -p src/ tests/",
+        "cs-check": "phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP --exclude=Squiz.Commenting.DocCommentAlignment src/ tests/",
+        "cs-fix": "phpcbf --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP --exclude=Squiz.Commenting.DocCommentAlignmentsrc/ tests/",
         "stan": "phpstan analyse",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "openapi": "openapi --output openapi.yml --format y src/Controller/Api/"
     },
     "prefer-stable": true,
     "config": {

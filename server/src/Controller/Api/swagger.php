@@ -15,3 +15,20 @@ declare(strict_types=1);
  *   url="http://localhost"
  * )
  */
+
+/**
+ * @OA\Schema(
+ *   schema="default_error_response_content",
+ *   type="object",
+ *   @OA\Property(
+ *     property="message",
+ *     type="string",
+ *     description="エラーメッセージ",
+ *   ),
+ *   example={
+ *     "message"="予期しないエラーです"
+ *   },
+ * )
+ */
+
+

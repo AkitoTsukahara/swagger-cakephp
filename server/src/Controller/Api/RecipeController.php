@@ -72,17 +72,7 @@ class RecipeController extends AppController
      *   @OA\Response(
      *     response="default",
      *     description="Unexpected Error",
-     *     @OA\JsonContent(
-     *       type="object",
-     *       @OA\Property(
-     *         property="message",
-     *         type="string",
-     *         description="エラーメッセージ",
-     *       ),
-     *      example={
-     *        "message"="予期しないエラーです"
-     *      },
-     *     ),
+     *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *   ),
      * )
      *
@@ -146,17 +136,7 @@ class RecipeController extends AppController
      *   @OA\Response(
      *     response="default",
      *     description="Unexpected Error",
-     *     @OA\JsonContent(
-     *       type="object",
-     *       @OA\Property(
-     *         property="message",
-     *         type="string",
-     *         description="エラーメッセージ",
-     *       ),
-     *      example={
-     *        "message"="予期しないエラーです"
-     *      },
-     *     ),
+     *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *   ),
      * )
      *
@@ -221,16 +201,7 @@ class RecipeController extends AppController
      *   @OA\Response(
      *     response="default",
      *     description="Unexpected Error",
-     *     @OA\JsonContent(
-     *       type="object",
-     *       @OA\Property(
-     *         property="message",
-     *         type="string",
-     *         description="エラーメッセージ",
-     *       ),
-     *      example={
-     *        "message"="予期しないエラーです"
-     *      },
+     *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *     ),
      *   ),
      * )
@@ -273,7 +244,7 @@ class RecipeController extends AppController
      *     required=true,
      *     @OA\JsonContent(
      *       type="object",
-     *       required={"description"},
+     *       required={"title", "description"},
      *       @OA\Property(
      *         property="title",
      *         type="string",
@@ -313,16 +284,7 @@ class RecipeController extends AppController
      *   @OA\Response(
      *     response="default",
      *     description="Unexpected Error",
-     *     @OA\JsonContent(
-     *       type="object",
-     *       @OA\Property(
-     *         property="message",
-     *         type="string",
-     *         description="エラーメッセージ",
-     *       ),
-     *      example={
-     *        "message"="予期しないエラーです"
-     *      },
+     *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *     ),
      *   ),
      * )

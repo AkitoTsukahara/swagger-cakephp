@@ -1,0 +1,358 @@
+openapi: 3.0.0
+info:
+  title: 'CakePHP Swagger'
+  description: 'CakePHP Swagger LT API Automatically generate documental'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+    description: localhost
+paths:
+  /api/recipe/index.json:
+    get:
+      tags:
+        - Recipe
+      summary: レシピをすべて取得する
+      operationId: 'App\Controller\Api\RecipeController::index'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  recipes: { description: レシピ一覧, type: array, items: { properties: { id: { description: レシピID, type: string }, title: { description: レシピ名, type: string }, description: { description: レシピ内容, type: string } }, type: object }, example: [{ id: c366f5be-360b-45cc-8282-65c80e434f72, title: ハンバーグ, description: ジューシーでご飯がすすむ定番のハンバーグレシピです。ソースの材料もケチャップ、ウスターソース、醤油の３つだけとシンプル。 }, { id: 93d5ef90-be4d-4179-9311-e39bddc26427, title: 親子丼, description: ふんわりとろっとろな半熟仕立ての卵とだしの相性が抜群！ご飯にからんで食欲そそる、手軽なのに食べごたえもある満足度高めな一品です。 }] }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default_error_response_content'
+  '/api/recipe/view/{id}.json':
+    get:
+      tags:
+        - Recipe
+      summary: レシピを参照する
+      operationId: 'App\Controller\Api\RecipeController::view'
+      parameters:
+        -
+          name: id
+          in: path
+          description: レシピID
+          required: true
+          schema:
+            type: string
+          example: c366f5be-360b-45cc-8282-65c80e434f72
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  recipes: { description: レシピ, properties: { id: { description: レシピID, type: string }, title: { description: レシピ名, type: string }, description: { description: レシピ内容, type: string } }, type: object, example: { id: c366f5be-360b-45cc-8282-65c80e434f72, title: ハンバーグ, description: ジューシーでご飯がすすむ定番のハンバーグレシピです。ソースの材料もケチャップ、ウスターソース、醤油の３つだけとシンプル。 } }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default_error_response_content'
+  /api/recipe/add.json:
+    post:
+      tags:
+        - Recipe
+      summary: レシピを登録する
+      operationId: 'App\Controller\Api\RecipeController::add'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - title
+                - description
+              properties:
+                title:
+                  description: レシピ名
+                  type: string
+                description:
+                  description: レシピ内容
+                  type: string
+              type: object
+            example:
+              title: ハンバーグ
+              description: ジューシーでご飯がすすむ定番のハンバーグレシピです。ソースの材料もケチャップ、ウスターソース、醤油の３つだけとシンプル。
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  recipe: { description: レシピ, properties: { id: { description: ID, type: string } }, type: object, example: { id: c366f5be-360b-45cc-8282-65c80e434f72 } }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default_error_response_content'
+  '/api/recipe/edit/{id}.json':
+    put:
+      tags:
+        - Recipe
+      summary: レシピを更新する
+      operationId: 'App\Controller\Api\RecipeController::edit'
+      parameters:
+        -
+          name: id
+          in: path
+          description: レシピID
+          required: true
+          schema:
+            type: string
+          example: c366f5be-360b-45cc-8282-65c80e434f72
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - description
+              properties:
+                title:
+                  description: レシピ名
+                  type: string
+                description:
+                  description: レシピ内容
+                  type: string
+              type: object
+            example:
+              title: ハンバーグ
+              description: ジューシーでご飯がすすむ定番のハンバーグレシピです。ソースの材料もケチャップ、ウスターソース、醤油の３つだけとシンプル。
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  recipe: { description: レシピ, properties: { id: { description: ID, type: string } }, type: object, example: { id: c366f5be-360b-45cc-8282-65c80e434f72 } }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default_error_response_content'
+  '/api/recipe/delete/{id}.json':
+    delete:
+      tags:
+        - Recipe
+      summary: レシピを削除する
+      operationId: 'App\Controller\Api\RecipeController::delete'
+      parameters:
+        -
+          name: id
+          in: path
+          description: レシピID
+          required: true
+          schema:
+            type: string
+          example: c366f5be-360b-45cc-8282-65c80e434f72
+      responses:
+        '204':
+          description: 'No Content'
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { description: エラーメッセージ, type: string }
+                type: object
+              example:
+                message: 予期しないエラーです
+  /api/task/search.json:
+    get:
+      tags:
+        - Task
+      summary: タスクを検索する
+      operationId: 'App\Controller\Api\TaskController::search'
+      parameters:
+        -
+          name: description_like
+          in: query
+          description: タスク内容検索条件
+          required: false
+          schema:
+            type: string
+          example: 作業
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  tasks: { description: タスク一覧, type: array, items: { properties: { id: { description: タスクID, type: string }, description: { description: タスク内容, type: string } }, type: object }, example: [{ id: c366f5be-360b-45cc-8282-65c80e434f72, description: 朝の身だしなみチェック }, { id: 93d5ef90-be4d-4179-9311-e39bddc26427, description: 寝る前の作業 }] }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { description: エラーメッセージ, type: string }
+                type: object
+  '/api/task/view/{id}.json':
+    get:
+      tags:
+        - Task
+      summary: タスクを参照する
+      operationId: 'App\Controller\Api\TaskController::view'
+      parameters:
+        -
+          name: id
+          in: path
+          description: タスクID
+          required: true
+          schema:
+            type: string
+          example: c366f5be-360b-45cc-8282-65c80e434f72
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  task: { description: タスク, properties: { id: { description: ID, type: string, example: c366f5be-360b-45cc-8282-65c80e434f72 }, description: { description: タスク内容, type: string, example: 朝の身だしなみチェック } }, type: object }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { description: エラーメッセージ, type: string }
+                type: object
+  /api/task/create.json:
+    post:
+      tags:
+        - Task
+      summary: タスクを登録する
+      operationId: 'App\Controller\Api\TaskController::create'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - description
+              properties:
+                description:
+                  description: タスク内容
+                  type: string
+                  example: 朝の身だしなみチェック
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  task: { description: タスク, properties: { id: { description: ID, type: string, example: c366f5be-360b-45cc-8282-65c80e434f72 } }, type: object }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { description: エラーメッセージ, type: string }
+                type: object
+  '/api/task/update/{id}.json':
+    put:
+      tags:
+        - Task
+      summary: タスクを更新する
+      operationId: 'App\Controller\Api\TaskController::update'
+      parameters:
+        -
+          name: id
+          in: path
+          description: タスクID
+          required: true
+          schema:
+            type: string
+          example: c366f5be-360b-45cc-8282-65c80e434f72
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+                - description
+              properties:
+                description:
+                  description: タスク内容
+                  type: string
+                  example: 朝の身だしなみチェック
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  task: { description: タスク, properties: { id: { description: ID, type: string, example: c366f5be-360b-45cc-8282-65c80e434f72 } }, type: object }
+                type: object
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { description: エラーメッセージ, type: string }
+                type: object
+  '/api/task/delete/{id}.json':
+    delete:
+      tags:
+        - Task
+      summary: タスクを削除する
+      operationId: 'App\Controller\Api\TaskController::delete'
+      parameters:
+        -
+          name: id
+          in: path
+          description: タスクID
+          required: true
+          schema:
+            type: string
+          example: c366f5be-360b-45cc-8282-65c80e434f72
+      responses:
+        '204':
+          description: 'No Content'
+        default:
+          description: 'Unexpected Error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { description: エラーメッセージ, type: string }
+                type: object
+components:
+  schemas:
+    default_error_response_content:
+      properties:
+        message:
+          description: エラーメッセージ
+          type: string
+      type: object
+      example:
+        message: 予期しないエラーです

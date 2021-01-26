@@ -4,5 +4,3 @@
 /docker/db/*
 !.gitkeep
 .idea
-# Swagger
-openapi.yml

@@ -26,6 +26,7 @@ class RecipeController extends AppController
      *
      * @OA\Get(
      *   path="/api/recipe/index.json",
+     *   operationId = "RecipeIndex",
      *   tags={"Recipe"},
      *   summary="レシピをすべて取得する",
      *   @OA\Response(
@@ -91,6 +92,7 @@ class RecipeController extends AppController
      *
      * @OA\Get(
      *   path="/api/recipe/view/{id}.json",
+     *   operationId = "RecipeView",
      *   tags={"Recipe"},
      *   summary="レシピを参照する",
      *   @OA\Parameter(
@@ -155,6 +157,7 @@ class RecipeController extends AppController
      *
      * @OA\Post(
      *   path="/api/recipe/add.json",
+     *   operationId = "RecipeAdd",
      *   tags={"Recipe"},
      *   summary="レシピを登録する",
      *   @OA\RequestBody(
@@ -230,6 +233,7 @@ class RecipeController extends AppController
      *
      * @OA\Put(
      *   path="/api/recipe/edit/{id}.json",
+     *   operationId = "RecipeEdit",
      *   tags={"Recipe"},
      *   summary="レシピを更新する",
      *   @OA\Parameter(
@@ -315,6 +319,7 @@ class RecipeController extends AppController
      *
      * @OA\Delete(
      *   path="/api/recipe/delete/{id}.json",
+     *   operationId = "RecipeDelete",
      *   tags={"Recipe"},
      *   summary="レシピを削除する",
      *   @OA\Parameter(

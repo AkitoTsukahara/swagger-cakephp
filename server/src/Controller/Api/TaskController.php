@@ -31,6 +31,7 @@ class TaskController extends AppController
      *
      * @OA\Get(
      *   path="/api/task/search.json",
+     *   operationId = "TaskIndex",
      *   tags={"Task"},
      *   summary="タスクを検索する",
      *   @OA\Parameter(
@@ -105,6 +106,7 @@ class TaskController extends AppController
      *
      * @OA\Get(
      *   path="/api/task/view/{id}.json",
+     *   operationId = "TaskView",
      *   tags={"Task"},
      *   summary="タスクを参照する",
      *   @OA\Parameter(
@@ -170,6 +172,7 @@ class TaskController extends AppController
      *
      * @OA\Post(
      *   path="/api/task/create.json",
+     *   operationId = "TaskCreate",
      *   tags={"Task"},
      *   summary="タスクを登録する",
      *   @OA\RequestBody(
@@ -246,6 +249,7 @@ class TaskController extends AppController
      *
      * @OA\Put(
      *   path="/api/task/update/{id}.json",
+     *   operationId = "TaskUpdate",
      *   tags={"Task"},
      *   summary="タスクを更新する",
      *   @OA\Parameter(
@@ -332,6 +336,7 @@ class TaskController extends AppController
      *
      * @OA\Delete(
      *   path="/api/task/delete/{id}.json",
+     *   operationId = "TaskDelete",
      *   tags={"Task"},
      *   summary="タスクを削除する",
      *   @OA\Parameter(

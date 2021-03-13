@@ -50,7 +50,7 @@ services:
     volumes:
       - ./server:/tmp
     environment:
-      SWAGGER_FILE: /tmp/openapi.yml
+      SWAGGER_FILE: /tmp/openapi.json
 
 
   swagger-ui:
@@ -61,4 +61,4 @@ services:
     volumes:
       - ./server:/tmp
     environment:
-      SWAGGER_JSON: /tmp/openapi.yml
+      SWAGGER_JSON: /tmp/openapi.json

@@ -23,7 +23,7 @@ paths:
                 properties:
                   recipes: { description: レシピ一覧, type: array, items: { properties: { id: { description: レシピID, type: string }, title: { description: レシピ名, type: string }, description: { description: レシピ内容, type: string } }, type: object }, example: [{ id: c366f5be-360b-45cc-8282-65c80e434f72, title: ハンバーグ, description: ジューシーでご飯がすすむ定番のハンバーグレシピです。ソースの材料もケチャップ、ウスターソース、醤油の３つだけとシンプル。 }, { id: 93d5ef90-be4d-4179-9311-e39bddc26427, title: 親子丼, description: ふんわりとろっとろな半熟仕立ての卵とだしの相性が抜群！ご飯にからんで食欲そそる、手軽なのに食べごたえもある満足度高めな一品です。 }] }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -53,7 +53,7 @@ paths:
                 properties:
                   recipes: { description: レシピ, properties: { id: { description: レシピID, type: string }, title: { description: レシピ名, type: string }, description: { description: レシピ内容, type: string } }, type: object, example: { id: c366f5be-360b-45cc-8282-65c80e434f72, title: ハンバーグ, description: ジューシーでご飯がすすむ定番のハンバーグレシピです。ソースの材料もケチャップ、ウスターソース、醤油の３つだけとシンプル。 } }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -93,7 +93,7 @@ paths:
                 properties:
                   recipe: { description: レシピ, properties: { id: { description: ID, type: string } }, type: object, example: { id: c366f5be-360b-45cc-8282-65c80e434f72 } }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -142,7 +142,7 @@ paths:
                 properties:
                   recipe: { description: レシピ, properties: { id: { description: ID, type: string } }, type: object, example: { id: c366f5be-360b-45cc-8282-65c80e434f72 } }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -166,7 +166,7 @@ paths:
       responses:
         '204':
           description: 'No Content'
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -200,7 +200,7 @@ paths:
                 properties:
                   tasks: { description: タスク一覧, type: array, items: { properties: { id: { description: タスクID, type: string }, description: { description: タスク内容, type: string } }, type: object }, example: [{ id: c366f5be-360b-45cc-8282-65c80e434f72, description: 朝の身だしなみチェック }, { id: 93d5ef90-be4d-4179-9311-e39bddc26427, description: 寝る前の作業 }] }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -232,7 +232,7 @@ paths:
                 properties:
                   task: { description: タスク, properties: { id: { description: ID, type: string, example: c366f5be-360b-45cc-8282-65c80e434f72 }, description: { description: タスク内容, type: string, example: 朝の身だしなみチェック } }, type: object }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -268,7 +268,7 @@ paths:
                 properties:
                   task: { description: タスク, properties: { id: { description: ID, type: string, example: c366f5be-360b-45cc-8282-65c80e434f72 } }, type: object }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -313,7 +313,7 @@ paths:
                 properties:
                   task: { description: タスク, properties: { id: { description: ID, type: string, example: c366f5be-360b-45cc-8282-65c80e434f72 } }, type: object }
                 type: object
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:
@@ -339,7 +339,7 @@ paths:
       responses:
         '204':
           description: 'No Content'
-        default:
+        '400':
           description: 'Unexpected Error'
           content:
             application/json:

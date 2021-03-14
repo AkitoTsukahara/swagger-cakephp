@@ -71,7 +71,7 @@ class RecipeController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *   ),
@@ -136,7 +136,7 @@ class RecipeController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *   ),
@@ -202,7 +202,7 @@ class RecipeController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *     ),
@@ -286,7 +286,7 @@ class RecipeController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(ref="#/components/schemas/default_error_response_content")
      *     ),
@@ -335,7 +335,7 @@ class RecipeController extends AppController
      *     description="No Content",
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(
      *       type="object",

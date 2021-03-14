@@ -77,7 +77,7 @@ class TaskController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(
      *       type="object",
@@ -142,7 +142,7 @@ class TaskController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(
      *       type="object",
@@ -207,7 +207,7 @@ class TaskController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(
      *       type="object",
@@ -292,7 +292,7 @@ class TaskController extends AppController
      *     ),
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(
      *       type="object",
@@ -352,7 +352,7 @@ class TaskController extends AppController
      *     description="No Content",
      *   ),
      *   @OA\Response(
-     *     response="default",
+     *     response="400",
      *     description="Unexpected Error",
      *     @OA\JsonContent(
      *       type="object",
